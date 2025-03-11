@@ -40,9 +40,6 @@ thread3.start()
 # thread2.join()
 # thread3.join()
 
-#Test
-
-
 
 #Input a chord, key or note
 #TAKE USER INPUT 
