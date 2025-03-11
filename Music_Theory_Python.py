@@ -6,29 +6,29 @@ import threading
 pygame.mixer.init()
 
 # Load your sound files
-sound1 = pygame.mixer.Sound("./Notes/C_Single_Note.mp3")  # Replace with your file
-sound2 = pygame.mixer.Sound("./Notes/E_Single_Note.mp3")  # Replace with your file
-sound3 = pygame.mixer.Sound("./Notes/G_Single_Note.mp3")  # Replace with your file
+soundC = pygame.mixer.Sound("./Notes/C_Single_Note.mp3")  # Replace with your file
+soundE = pygame.mixer.Sound("./Notes/E_Single_Note.mp3")  # Replace with your file
+soundG = pygame.mixer.Sound("./Notes/G_Single_Note.mp3")  # Replace with your file
 
 # Function to play sound1
-def play_sound1():
-    sound1.play()
+def play_soundC():
+    soundC.play()
     time.sleep(1)  # Wait for the sound to finish (adjust as per sound duration)
 
 # Function to play sound2
-def play_sound2():
-    sound2.play()
+def play_soundE():
+    soundE.play()
     time.sleep(1)  # Wait for the sound to finish (adjust as per sound duration)
 
 # Function to play sound3
-def play_sound3():
-    sound3.play()
+def play_soundG():
+    soundG.play()
     time.sleep(1)  # Wait for the sound to finish (adjust as per sound duration)
 
 # Create # threads to play both sounds at the same time
-thread1 = threading.Thread(target=play_sound1)
-thread2 = threading.Thread(target=play_sound2)
-thread3 = threading.Thread(target=play_sound3)
+thread1 = threading.Thread(target=play_soundC)
+thread2 = threading.Thread(target=play_soundE)
+thread3 = threading.Thread(target=play_soundG)
 
 # Start the threads
 thread1.start()
