@@ -5,35 +5,38 @@ import threading
 # Initialize pygame mixer
 pygame.mixer.init()
 
-# Load your sound files
-sound_c = pygame.mixer.Sound("./Notes/C_Single_Note.mp3")  # Replace with your file
-sound_e = pygame.mixer.Sound("./Notes/E_Single_Note.mp3")  # Replace with your file
-sound_g = pygame.mixer.Sound("./Notes/G_Single_Note.mp3")  # Replace with your file
+# Load sound files by using a dictionary
+notes = {
+    "A#_Bb": pygame.mixer.Sound("./Notes/A#_Bb_Single_Note.mp3"),
+    "A": pygame.mixer.Sound("./Notes/A_Single_Note.mp3"),
+    "B": pygame.mixer.Sound("./Notes/B_Single_Note.mp3"),
+    "C#_Db": pygame.mixer.Sound("./Notes/C#_Db_Single_Note.mp3"),
+    "C": pygame.mixer.Sound("./Notes/C_Single_Note.mp3"),
+    "D#_Eb": pygame.mixer.Sound("./Notes/D#_Eb_Single_Note.mp3"),
+    "D": pygame.mixer.Sound("./Notes/D_Single_Note.mp3"),
+    "E": pygame.mixer.Sound("./Notes/E_Single_Note.mp3"),
+    "F#_Gb": pygame.mixer.Sound("./Notes/F#_Gb_Single_Note.mp3"),
+    "F": pygame.mixer.Sound("./Notes/F_Single_Note.mp3"),
+    "G#_Ab": pygame.mixer.Sound("./Notes/G#_Ab_Single_Note.mp3"),
+    "G": pygame.mixer.Sound("./Notes/G_Single_Note.mp3"),
+}
 
-# Function to play sound_c
-def play_sound_c():
-    sound_c.play()
-    time.sleep(1)  # Wait for the sound to finish (adjust as per sound duration)
+# Function to play a note
+def play_note(note):
+    notes[note].play()
+    time.sleep(1)  # Adjust duration as needed
 
-# Function to play sound_e
-def play_sound_e():
-    sound_e.play()
-    time.sleep(1)  # Wait for the sound to finish (adjust as per sound duration)
+# Notes to play simultaneously
+notes_to_play = ["C", "E", "G"]
 
-# Function to play sound_g
-def play_sound_g():
-    sound_g.play()
-    time.sleep(1)  # Wait for the sound to finish (adjust as per sound duration)
+# Create and start threads
+threads = [threading.Thread(target=play_note, args=(note,)) for note in notes_to_play]
+for thread in threads:
+    thread.start()
 
-# Create # threads to play both sounds at the same time
-thread1 = threading.Thread(target=play_sound_c)
-thread2 = threading.Thread(target=play_sound_e)
-thread3 = threading.Thread(target=play_sound_g)
-
-# Start the threads
-thread1.start()
-thread2.start()
-thread3.start()
+# Wait for all threads to finish
+for thread in threads:
+    thread.join()
 
 
 # thread1.join()
