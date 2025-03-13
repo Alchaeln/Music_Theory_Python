@@ -43,23 +43,23 @@ for thread in threads:
 # thread2.join()
 # thread3.join()
 
-
+#Which of these do you want to hear 
 #Input a chord, key or note
 #TAKE USER INPUT 
 
-#Which of these do you hear 
+
 #case note - chord or key
     #chord
         #calls function of chord
     #key
-        #calls function of chord
+        #calls function of key
 #case chord - note or key
     #note
-        #calls function of chord
+        #calls function of note
     #key
-        #calls function of chord
+        #calls function of key
 #case key - note or chord
     #note
-        #calls function of chord
+        #calls function of note
     #chord
         #calls function of chord
