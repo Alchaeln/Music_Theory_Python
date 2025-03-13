@@ -24,19 +24,61 @@ notes = {
 # Function to play a note
 def play_note(note):
     notes[note].play()
-    time.sleep(1)  # Adjust duration as needed
+    print(note)
+    time.sleep(.5) # Adjust duration as needed
+
+def play_notes(notes_list):
+    for note in notes_list:
+        play_note(note)  # Calls the existing play_note function
+
+
+
+# Example usage:
+mary_lamb = ["E", "D", "C", "D", "E", "E", "E", "D", "D", "D", "E", "G", "G"]
+alphabet = ["A", "A#_Bb", "B", "C", "C#_Db", "D", "D#_Eb", "E", "F", "F#_Gb", "G", "G#_Ab"]
+# play_notes(alphabet)
+
+time.sleep(1)
+
+#User input
+#Case C E G
+#put that into array
+#play that array from notes to play
+
+#inifite chords
+
+#predefining
+#C chord (major), minor
+
+# Ask the user for a sequence of notes
+print(f"Enter any of these notes")
+print(f"{alphabet}")
+user_input = input("Enter notes separated by spaces (e.g., C E G): ")
+
+# Convert input into a list
+notes_list = user_input.split()
+
+# Play the notes one by one
+play_notes(notes_list)
+
 
 # Notes to play simultaneously
-notes_to_play = ["C", "E", "G"]
+notes_to_play = notes_list
 
 # Create and start threads
-threads = [threading.Thread(target=play_note, args=(note,)) for note in notes_to_play]
-for thread in threads:
-    thread.start()
-
+try:
+    threads = [threading.Thread(target=play_note, args=(note)) for note in notes_to_play]
+    for thread in threads:
+        thread.start()
+except:
+    print("")
+    
 # Wait for all threads to finish
-for thread in threads:
-    thread.join()
+try:
+    for thread in threads:
+        thread.join()
+except:
+    print("")
 
 
 # thread1.join()
@@ -46,7 +88,6 @@ for thread in threads:
 #Which of these do you want to hear 
 #Input a chord, key or note
 #TAKE USER INPUT 
-
 
 #case note - chord or key
     #chord
