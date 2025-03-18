@@ -2,35 +2,9 @@ import pygame
 import time
 import threading
 
-# Initialize pygame mixer
+
 pygame.mixer.init()
 
-<<<<<<< HEAD
-# Load your sound files
-soundC = pygame.mixer.Sound("./Notes/C_Single_Note.mp3")  # Replace with your file
-soundE = pygame.mixer.Sound("./Notes/E_Single_Note.mp3")  # Replace with your file
-soundG = pygame.mixer.Sound("./Notes/G_Single_Note.mp3")  # Replace with your file
-
-# Function to play sound1
-def play_soundC():
-    soundC.play()
-    time.sleep(1)  # Wait for the sound to finish (adjust as per sound duration)
-
-# Function to play sound2
-def play_soundE():
-    soundE.play()
-    time.sleep(1)  # Wait for the sound to finish (adjust as per sound duration)
-
-# Function to play sound3
-def play_soundG():
-    soundG.play()
-    time.sleep(1)  # Wait for the sound to finish (adjust as per sound duration)
-
-# Create # threads to play both sounds at the same time
-thread1 = threading.Thread(target=play_soundC)
-thread2 = threading.Thread(target=play_soundE)
-thread3 = threading.Thread(target=play_soundG)
-=======
 # Load sound files by using a dictionary
 notes = {
     "A#_Bb": pygame.mixer.Sound("./Notes/A#_Bb_Single_Note.mp3"),
@@ -51,14 +25,12 @@ notes = {
 def play_note(note):
     notes[note].play()
     print(note)
-    time.sleep(.5) # Adjust duration as needed
+    time.sleep(1) # Adjust duration as needed
 
 def play_notes(notes_list):
     for note in notes_list:
         play_note(note)  # Calls the existing play_note function
 
-
->>>>>>> 1e32d94933c8f509050aa614019a74b226af9552
 
 # Example usage:
 mary_lamb = ["E", "D", "C", "D", "E", "E", "E", "D", "D", "D", "E", "G", "G"]
@@ -78,35 +50,42 @@ time.sleep(1)
 #C chord (major), minor
 
 # Ask the user for a sequence of notes
-print(f"Enter any of these notes")
-print(f"{alphabet}")
-user_input = input("Enter notes separated by spaces (e.g., C E G): ")
+def run_app():
 
-# Convert input into a list
-notes_list = user_input.split()
+    print("-" * 100)   # Prints "----------"
+    print(f"Welcome to our Music Theory Tool!")
+    print(f"Choose from any of these notes")
+    print(f"{alphabet}")
+    user_input = input("Enter notes separated by spaces (e.g., C E G): ")
 
-# Play the notes one by one
-play_notes(notes_list)
+    # Convert input into a list
+    notes_list = user_input.split()
+
+    # Play the notes one by one
+    play_notes(notes_list)
 
 
-# Notes to play simultaneously
-notes_to_play = notes_list
+    # Notes to play simultaneously
+    notes_to_play = notes_list
 
-# Create and start threads
-try:
-    threads = [threading.Thread(target=play_note, args=(note)) for note in notes_to_play]
-    for thread in threads:
-        thread.start()
-except:
-    print("")
-    
-# Wait for all threads to finish
-try:
-    for thread in threads:
-        thread.join()
-except:
-    print("")
+    # Create and start threads
+    try:
+        threads = [threading.Thread(target=play_note, args=(note,)) for note in notes_to_play]
+        for thread in threads:
+            thread.start()
+    except:
+        print("")
+        
+    # Wait for all threads to finish
+    try:
+        for thread in threads:
+            thread.join()
+    except:
+        print("")
 
+
+#play_notes(mary_lamb)
+run_app()
 
 # thread1.join()
 # thread2.join()
